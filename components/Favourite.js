@@ -1,7 +1,5 @@
 import {
   FlatList,
-  SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -11,7 +9,7 @@ import {
   Alert,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Entypo } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { Items } from "../db";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
@@ -52,12 +50,11 @@ const Item = ({ item, handleDelete }) => {
           />
           <Text style={styles.itemText}>{item.name}</Text>
         </View>
-        <Text style={styles.itemText}>{item.price}</Text>
         <TouchableOpacity
           style={styles.deleteButton}
           onPress={() => handleConfirmation()}
         >
-          <Entypo name="trash" size={24} color="#d13f3f" />
+          <Ionicons name="ios-trash" size={24} color="#d13f3f" />
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
@@ -108,7 +105,7 @@ const Favourite = ({ navigation: { navigate } }) => {
           height: "100%",
         }}
       >
-        <Text>Have no favorite</Text>
+        <Text> NO FAVOURITE HERE</Text>
       </View>
     );
   }
@@ -138,22 +135,16 @@ const Favourite = ({ navigation: { navigate } }) => {
   };
 
   return (
-    <>
-      <View style={styles.container}>
-        <View style={{ paddingVertical: 20, paddingHorizontal: 100 }}>
-          <Button
-            title="DELETE ALL"
-            onPress={handleConfirmation}
-            color="#d13f3f"
-          />
-        </View>
-        <FlatList
-          data={list}
-          keyExtractor={(item) => item.id}
-          renderItem={renderItem}
-        />
+    <View style={styles.container}>
+      <View style={{ paddingVertical: 20, paddingHorizontal: 100 }}>
+        <Button title="DELETE ALL" onPress={handleConfirmation} color="red" />
       </View>
-    </>
+      <FlatList
+        data={list}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+      />
+    </View>
   );
 };
 
@@ -174,16 +165,17 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     backgroundColor: "#eee",
     alignItems: "center",
-    marginTop: 10,
+    margin: 10,
     elevation: 6,
-    shadowColor: "rgba(93, 10, 10, 0.9)",
-    shadowOffset: { width: 1, height: 4 },
+    shadowColor: "green",
+    shadowOffset: { width: 1, height: 3 },
     shadowOpacity: 2,
     shadowRadius: 4,
   },
   itemText: {
     color: "#333",
     fontSize: 16,
+    fontWeight: "500",
   },
   logo: {
     height: 80,
